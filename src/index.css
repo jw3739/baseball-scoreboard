@@ -13,13 +13,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.scoreboard-container {
+  display: flex;
+  justify-content: center;
+}
 .scoreboard {
   display: flex;
   flex-wrap: wrap;
-  background-color: black;
+  background-color: purple;
   height: 200px;
-  width: 325px;
+  width: 350px;
 }
 .team-score-container {
   background-color: blue;
@@ -27,7 +30,7 @@ code {
   width: 60%;
 }
 .bases-container {
-  background-color: grey;
+  background-color: #222;
   height: 70%;
   width: 40%;
   float: right;
@@ -37,10 +40,17 @@ code {
 }
 .info-bar-container {
   display: flex;
-  background-color: black;
+  background-color: #111;
   color: white;
   width: 100%;
   height: 30%;
+  font-size: 32px;
+}
+.team {
+  font-size: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
 }
 .team-1 {
   background-color: red;
@@ -50,10 +60,18 @@ code {
   background-color: dodgerblue;
   height: 50%;
 }
+.team-name {
+  margin-left: 10px;
+}
+.score {
+  width: 100%;
+  text-align: right;
+  margin-right: 10px;
+}
 .base {
   border: 2px solid white;
-  width: 88%;
-  height: 88%;
+  width: 86%;
+  height: 86%;
 }
 .base-positioning {
   display: grid;
@@ -66,20 +84,20 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: orange;
+  /* background-color: orange; */
   width: 33%;
 }
 .outs-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: purple;
+  /* background-color: purple; */
   width: 30%;
 }
 .count-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  /* background-color: red; */
   width: 37%;
 }
