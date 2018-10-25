@@ -4,7 +4,11 @@ class Bases extends Component {
   render() {
     return (
       <div className="bases-container">
-        Bases
+        <div className='base-positioning'>
+            <div className='base'></div>
+            <div className='base'></div>
+            <div className='base'></div>
+        </div>
       </div>
     );
   }
