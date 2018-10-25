@@ -7,9 +7,18 @@ class Scoreboard extends Component {
   render() {
     return (
       <div className="scoreboard">
-        <TeamScore />
-        <Bases />
-        <InfoBar />
+        <TeamScore 
+            teamAScore={this.props.teamAScore}
+            teamBScore={this.props.teamBScore} />
+        <Bases 
+            onFirst={this.props.onFirst}
+            onSecond={this.props.onSecond}
+            onThird={this.props.onThird} />
+        <InfoBar
+        outs={this.props.outs}
+        balls={this.props.balls}
+        strikes={this.props.strikes}
+        />
       </div>
     );
   }

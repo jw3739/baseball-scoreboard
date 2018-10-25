@@ -69,9 +69,12 @@ code {
   margin-right: 10px;
 }
 .base {
-  border: 2px solid white;
+  border: 2px solid #ccc;
   width: 86%;
   height: 86%;
+}
+.active {
+  background-color: white;
 }
 .base-positioning {
   display: grid;
