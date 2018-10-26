@@ -18,6 +18,21 @@ class BaseballEvents extends Component {
     };
   }
 
+  calculateBaserunners = () => {
+    let totalBaserunners = 0;
+
+    if (this.state.onFirst) {
+      totalBaserunners = totalBaserunners + 1;
+    } 
+    if (this.state.onSecond) {
+      totalBaserunners = totalBaserunners + 1;
+    } 
+    if (this.state.onThird) {
+      totalBaserunners = totalBaserunners + 1;
+    }
+    return totalBaserunners;
+  }
+
   handleThreeOuts = () => {
     this.setState({
       strikes: 0,
@@ -86,6 +101,26 @@ class BaseballEvents extends Component {
     } 
   }
 
+  handleHomerun = () => {
+    let runsScored = this.calculateBaserunners() + 1;
+    this.setState ({
+      onFirst: false,
+      onSecond: false, 
+      onThird: false
+    })
+
+    if (this.state.bottomInning === false) {
+      this.setState({
+        teamBScore: this.state.teamBScore + runsScored
+      })
+    } else if (this.state.bottomInning === true) {
+      this.setState({
+        teamAScore: this.state.teamAScore + runsScored
+      })
+    }
+    
+  }
+
   render() {
     return (
       <div className="misc-container">
@@ -94,7 +129,7 @@ class BaseballEvents extends Component {
               <button>Single</button>
               <button>Double</button>
               <button>Triple</button>
-              <button>Homerun</button>
+              <button onClick={this.handleHomerun}>Homerun</button>
             </div>
             <div className='pitch-container'>
               <button onClick={this.handleStrike}>Strike</button>
