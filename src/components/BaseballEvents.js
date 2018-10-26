@@ -113,6 +113,7 @@ class BaseballEvents extends Component {
             balls={this.state.balls}
             strikes={this.state.strikes}
             inning={this.state.inning}
+            bottomInning={this.state.bottomInning}
             />
         </div>
       </div>

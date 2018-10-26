@@ -6,8 +6,7 @@ class InfoBar extends Component {
       <div className="info-bar-container">
         <span className='inning-container'>
             <div className='arrow-container'>
-                <div className="arrow-up"></div>
-                <div className="arrow-down"></div>
+                <div className={this.props.bottomInning ? 'arrow-down' : 'arrow-up'}></div> 
             </div>
             {this.props.inning}
         </span>
