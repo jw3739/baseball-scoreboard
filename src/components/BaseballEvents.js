@@ -27,15 +27,24 @@ class BaseballEvents extends Component {
       onSecond: false,
       onThird: false,
     })
-    if (this.state.bottomInning === false) {
+      if (this.state.bottomInning === false) {
+        this.setState({
+          bottomInning: true
+        })
+      } else {
+        this.setState({
+          bottomInning: false,
+          inning: this.state.inning + 1
+        })
+      }
+  }
+  handleOut = () => {
+    if (this.state.outs < 2) {
       this.setState({
-        bottomInning: true
+        outs: this.state.outs + 1
       })
     } else {
-      this.setState({
-        bottomInning: false,
-        inning: this.state.inning + 1
-      })
+      this.handleThreeOuts();
     }
   }
 
@@ -68,12 +77,13 @@ class BaseballEvents extends Component {
       })
     }
   }
+
   handleWalk = () => {
     if (this.state.onFirst === false) {
       this.setState({
         onFirst: true
-      })
-    }
+      }) 
+    } 
   }
 
   render() {
@@ -92,7 +102,7 @@ class BaseballEvents extends Component {
               <button>Foul</button>
             </div>
             <div className='out-event-container'>
-              <button>Out</button>
+              <button onClick={this.handleOut}>Out</button>
               <button>Doubleplay</button>
               <button>Tripleplay</button>
             </div>
