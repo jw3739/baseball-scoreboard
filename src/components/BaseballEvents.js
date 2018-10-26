@@ -17,6 +17,7 @@ class BaseballEvents extends Component {
       inning: 1
     };
   }
+
   handleThreeOuts = () => {
     this.setState({
       strikes: 0,
@@ -53,18 +54,28 @@ class BaseballEvents extends Component {
       this.handleThreeOuts();
     }
   }
+
   handleBall = () => {
     if (this.state.balls < 3) {
       this.setState({
         balls: this.state.balls + 1
       })
     } else {
+      this.handleWalk();
       this.setState({
         balls: 0,
         strikes: 0
       })
     }
   }
+  handleWalk = () => {
+    if (this.state.onFirst === false) {
+      this.setState({
+        onFirst: true
+      })
+    }
+  }
+
   render() {
     return (
       <div className="misc-container">
