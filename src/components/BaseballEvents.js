@@ -124,7 +124,9 @@ class BaseballEvents extends Component {
     this.setState ({
       onFirst: false,
       onSecond: false, 
-      onThird: false
+      onThird: false,
+      strikes: 0,
+      balls: 0
     })
 
     if (this.state.bottomInning === false) {
