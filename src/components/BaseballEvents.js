@@ -13,6 +13,7 @@ class BaseballEvents extends Component {
       onThird: false,
       teamAScore: 0,
       teamBScore: 0,
+      bottomInning: false,
       inning: 1
     };
   }
@@ -25,6 +26,16 @@ class BaseballEvents extends Component {
       onSecond: false,
       onThird: false,
     })
+    if (this.state.bottomInning === false) {
+      this.setState({
+        bottomInning: true
+      })
+    } else {
+      this.setState({
+        bottomInning: false,
+        inning: this.state.inning + 1
+      })
+    }
   }
 
   handleStrike = () => {
