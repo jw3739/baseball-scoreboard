@@ -15,6 +15,29 @@ class BaseballEvents extends Component {
       teamBScore: 0
     };
   }
+
+  handleStrike = () => {
+    if (this.state.strikes < 2) {
+      this.setState({
+        strikes: this.state.strikes + 1
+      })
+    } else {
+      this.setState({
+        strikes: 0
+      })
+    }
+  }
+  handleBall = () => {
+    if (this.state.balls < 3) {
+      this.setState({
+        balls: this.state.balls + 1
+      })
+    } else {
+      this.setState({
+        balls: 0
+      })
+    }
+  }
   render() {
     return (
       <div className="misc-container">
@@ -26,8 +49,8 @@ class BaseballEvents extends Component {
               <button>Homerun</button>
             </div>
             <div className='pitch-container'>
-              <button>Strike</button>
-              <button>Ball</button>
+              <button onClick={this.handleStrike}>Strike</button>
+              <button onClick={this.handleBall}>Ball</button>
               <button>Foul</button>
             </div>
             <div className='out-event-container'>
