@@ -12,8 +12,19 @@ class BaseballEvents extends Component {
       onSecond: false,
       onThird: false,
       teamAScore: 0,
-      teamBScore: 0
+      teamBScore: 0,
+      inning: 1
     };
+  }
+  handleThreeOuts = () => {
+    this.setState({
+      strikes: 0,
+      balls: 0,
+      outs: 0,
+      onFirst: false,
+      onSecond: false,
+      onThird: false,
+    })
   }
 
   handleStrike = () => {
@@ -21,10 +32,14 @@ class BaseballEvents extends Component {
       this.setState({
         strikes: this.state.strikes + 1
       })
-    } else {
+    } else if (this.state.outs < 2){
       this.setState({
-        strikes: 0
+        strikes: 0,
+        balls: 0,
+        outs: this.state.outs + 1
       })
+    } else {
+      this.handleThreeOuts();
     }
   }
   handleBall = () => {
@@ -34,7 +49,8 @@ class BaseballEvents extends Component {
       })
     } else {
       this.setState({
-        balls: 0
+        balls: 0,
+        strikes: 0
       })
     }
   }
@@ -74,6 +90,7 @@ class BaseballEvents extends Component {
             outs={this.state.outs}
             balls={this.state.balls}
             strikes={this.state.strikes}
+            inning={this.state.inning}
             />
         </div>
       </div>

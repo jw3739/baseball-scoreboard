@@ -9,7 +9,7 @@ class InfoBar extends Component {
                 <div className="arrow-up"></div>
                 <div className="arrow-down"></div>
             </div>
-            1
+            {this.props.inning}
         </span>
         <span className='outs-container'>{this.props.outs} Out</span>
         <span className='count-container'>{this.props.balls}-{this.props.strikes}</span>

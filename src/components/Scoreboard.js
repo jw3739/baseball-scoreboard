@@ -18,6 +18,7 @@ class Scoreboard extends Component {
         outs={this.props.outs}
         balls={this.props.balls}
         strikes={this.props.strikes}
+        inning={this.props.inning}
         />
       </div>
     );
