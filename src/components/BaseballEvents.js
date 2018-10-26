@@ -98,7 +98,25 @@ class BaseballEvents extends Component {
       this.setState({
         onFirst: true
       }) 
-    } 
+    } else if (this.state.onFirst && this.state.onSecond === false) {
+      this.setState({
+        onSecond: true
+      })
+    } else if (this.state.onFirst && this.state.onSecond && this.state.onThird === false) {
+      this.setState({
+        onThird: true
+      })
+    } else if (this.state.onFirst && this.state.onSecond && this.state.onThird) {
+      if (this.state.bottomInning === false) {
+        this.setState({
+          teamBScore: this.state.teamBScore + 1
+        })
+      } else if (this.state.bottomInning) {
+        this.setState({
+          teamAScore: this.state.teamAScore + 1
+        })
+      }
+    }
   }
 
   handleHomerun = () => {
