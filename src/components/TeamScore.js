@@ -11,7 +11,7 @@ class TeamScore extends Component {
             <span className='score'>{this.props.teamAScore}</span>
         </div>
         <div className='team team-2'>
-            <span className='team-name'>LA</span> 
+            <span className='team-name'>LAD</span> 
             <span className='score'>{this.props.teamBScore}</span>
         </div>
       </div>

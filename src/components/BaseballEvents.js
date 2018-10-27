@@ -121,6 +121,7 @@ class BaseballEvents extends Component {
 
   handleHomerun = () => {
     let runsScored = this.calculateBaserunners() + 1;
+    
     this.setState ({
       onFirst: false,
       onSecond: false, 
@@ -138,7 +139,105 @@ class BaseballEvents extends Component {
         teamAScore: this.state.teamAScore + runsScored
       })
     }
+  }
+
+  handleSacFly = () => {
+    this.handleOut();
+    if (this.state.onSecond && this.state.onThird === false) {
+      this.setState({
+        onSecond: false,
+        onThird: true
+      })
+    } 
+    if (this.state.onSecond && this.state.onThird) {
+      this.setState({
+        onSecond: false
+      })
+        this.sacFlyScore();
+    }
+    if (this.state.onThird) {
+      this.setState({
+        onThird: false
+      })
+      this.sacFlyScore();
+    }
+  }
+
+  sacFlyScore = () => {
+    if (this.state.outs < 2) {
+      if (this.state.bottomInning) {
+        this.setState({
+          teamAScore: this.state.teamAScore + 1
+        })
+      } else if (this.state.bottomInning === false) {
+        this.setState({
+          teamBScore: this.state.teamBScore + 1
+        })
+      }
+    }
+  }
+
+  handleDouble = () => {
+    this.doubleScore();
+    if (this.state.onFirst) {
+      this.setState({
+        onThird: true
+      })
+    }
+    this.setState({
+      onFirst: false,
+      onSecond: true,
+    })
+  }
+
+  doubleScore = () => {
+    if (this.state.onFirst === false) {
+      if (this.state.bottomInning) {
+        this.setState({
+          teamAScore: this.state.teamAScore + this.calculateBaserunners()
+        })
+      } else if (this.state.bottomInning === false) {
+        this.setState({
+          teamBScore: this.state.teamBScore + this.calculateBaserunners()
+        })
+      }
+    } else if (this.state.onFirst) {
+      if (this.state.bottomInning) {
+        this.setState({
+          teamAScore: this.state.teamAScore + this.calculateBaserunners() -1
+        })
+      } else if (this.state.bottomInning === false) {
+        this.setState({
+          teamBScore: this.state.teamBScore + this.calculateBaserunners() -1
+        })
+      }
+    }
     
+  }
+
+  handleTriple = () => {
+    this.tripleScore();
+    this.setState({
+      onFirst: false,
+      onSecond: false
+    })
+    if (this.state.onThird === false) {
+      this.setState({
+        onThird: true
+      })
+    }
+  }
+
+  tripleScore = () => {
+    if (this.state.bottomInning) {
+      this.setState({
+        teamAScore: this.state.teamAScore + this.calculateBaserunners()
+      })
+    } else if (this.state.bottomInning === false) {
+      this.setState({
+        teamBScore: this.state.teamBScore + this.calculateBaserunners()
+      })
+    }
   }
 
   render() {
@@ -147,8 +246,8 @@ class BaseballEvents extends Component {
           <div className='buttons-container'>
             <div className='hits-container'>
               <button>Single</button>
-              <button>Double</button>
-              <button>Triple</button>
+              <button onClick={this.handleDouble}>Double</button>
+              <button onClick={this.handleTriple}>Triple</button>
               <button onClick={this.handleHomerun}>Homerun</button>
             </div>
             <div className='pitch-container'>
@@ -163,7 +262,7 @@ class BaseballEvents extends Component {
             </div>
             <div className='misc-event-container'>
               <button>Stolen Base</button>
-              <button>Sac Fly</button>
+              <button onClick={this.handleSacFly}>Sac Fly</button>
               <button>Pickoff</button>
             </div> 
          </div>
