@@ -16,6 +16,8 @@ code {
     monospace;
 }
 .scoreboard-container {
+  margin-top: 15%;
+  margin-bottom: 10%;
   display: flex;
   justify-content: center;
 }
@@ -129,4 +131,8 @@ code {
 }
 .hidden-arrow {
   display: none;
+}
+.buttons-container {
+  display: flex;
+  justify-content: center;
 }

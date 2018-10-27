@@ -283,43 +283,43 @@ class BaseballEvents extends Component {
   render() {
     return (
       <div className="misc-container">
-          <div className='buttons-container'>
-            <div className='hits-container'>
-              <button onClick={this.handleSingle}>Single</button>
-              <button onClick={this.handleDouble}>Double</button>
-              <button onClick={this.handleTriple}>Triple</button>
-              <button onClick={this.handleHomerun}>Homerun</button>
-            </div>
-            <div className='pitch-container'>
-              <button onClick={this.handleStrike}>Strike</button>
-              <button onClick={this.handleBall}>Ball</button>
-              <button onClick={this.handleFoul}>Foul</button>
-            </div>
-            <div className='out-event-container'>
-              <button onClick={this.handleOut}>Out</button>
-              <button>Doubleplay</button>
-              <button>Tripleplay</button>
-            </div>
-            <div className='misc-event-container'>
-              <button>Stolen Base</button>
-              <button onClick={this.handleSacFly}>Sac Fly</button>
-              <button>Pickoff</button>
-            </div> 
-         </div>
         <div className='scoreboard-container'>
-            <Scoreboard 
-            teamAScore={this.state.teamAScore}
-            teamBScore={this.state.teamBScore}
-            onFirst={this.state.onFirst}
-            onSecond={this.state.onSecond}
-            onThird={this.state.onThird}
-            outs={this.state.outs}
-            balls={this.state.balls}
-            strikes={this.state.strikes}
-            inning={this.state.inning}
-            bottomInning={this.state.bottomInning}
-            />
-        </div>
+              <Scoreboard 
+              teamAScore={this.state.teamAScore}
+              teamBScore={this.state.teamBScore}
+              onFirst={this.state.onFirst}
+              onSecond={this.state.onSecond}
+              onThird={this.state.onThird}
+              outs={this.state.outs}
+              balls={this.state.balls}
+              strikes={this.state.strikes}
+              inning={this.state.inning}
+              bottomInning={this.state.bottomInning}
+              />
+          </div>
+            <div className='buttons-container'>
+              <div className='hits-container'>
+                <button onClick={this.handleSingle}>Single</button>
+                <button onClick={this.handleDouble}>Double</button>
+                <button onClick={this.handleTriple}>Triple</button>
+                <button onClick={this.handleHomerun}>Homerun</button>
+              </div>
+              <div className='pitch-container'>
+                <button onClick={this.handleStrike}>Strike</button>
+                <button onClick={this.handleBall}>Ball</button>
+                <button onClick={this.handleFoul}>Foul</button>
+              </div>
+              <div className='out-event-container'>
+                <button onClick={this.handleOut}>Out</button>
+                <button>Doubleplay</button>
+                <button>Tripleplay</button>
+              </div>
+              <div className='misc-event-container'>
+                <button>Stolen Base</button>
+                <button onClick={this.handleSacFly}>Sac Fly</button>
+                <button>Pickoff</button>
+              </div> 
+          </div>
       </div>
     );
   }
