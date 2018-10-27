@@ -20,7 +20,6 @@ class BaseballEvents extends Component {
 
   calculateBaserunners = () => {
     let totalBaserunners = 0;
-
     if (this.state.onFirst) {
       totalBaserunners = totalBaserunners + 1;
     } 
@@ -34,9 +33,8 @@ class BaseballEvents extends Component {
   }
 
   handleThreeOuts = () => {
+    this.resetCount();
     this.setState({
-      strikes: 0,
-      balls: 0,
       outs: 0,
       onFirst: false,
       onSecond: false,
@@ -54,6 +52,7 @@ class BaseballEvents extends Component {
       }
   }
   handleOut = () => {
+    this.resetCount();
     if (this.state.outs < 2) {
       this.setState({
         outs: this.state.outs + 1
@@ -69,13 +68,14 @@ class BaseballEvents extends Component {
         strikes: this.state.strikes + 1
       })
     } else if (this.state.outs < 2){
-      this.setState({
-        strikes: 0,
-        balls: 0,
-        outs: this.state.outs + 1
-      })
+      this.handleOut();
     } else {
       this.handleThreeOuts();
+    }
+  }
+  handleFoul = () => {
+    if (this.state.strikes < 2) {
+      this.handleStrike();
     }
   }
 
@@ -120,16 +120,13 @@ class BaseballEvents extends Component {
   }
 
   handleHomerun = () => {
+    this.resetCount();
     let runsScored = this.calculateBaserunners() + 1;
-    
     this.setState ({
       onFirst: false,
       onSecond: false, 
-      onThird: false,
-      strikes: 0,
-      balls: 0
+      onThird: false
     })
-
     if (this.state.bottomInning === false) {
       this.setState({
         teamBScore: this.state.teamBScore + runsScored
@@ -176,8 +173,43 @@ class BaseballEvents extends Component {
       }
     }
   }
+  handleSingle = () => {
+    this.resetCount();
+    if (this.state.onThird) {
+      this.singleScore();
+      this.setState({
+        onThird: false
+      })
+    }
+    if (this.state.onSecond) {
+      this.setState({
+        onSecond: false,
+        onThird: true
+      })
+    }
+    if (this.state.onFirst) {
+      this.setState({
+        onSecond: true
+      })
+    }
+    this.setState({
+      onFirst: true
+    })
+  }
+  singleScore = () => {
+    if (this.state.bottomInning) {
+      this.setState({
+        teamAScore: this.state.teamAScore + 1
+      })
+    } else if (this.state.bottomInning === false) {
+      this.setState({
+        teamBScore: this.state.teamBScore + 1
+      })
+    }
+  }
 
   handleDouble = () => {
+    this.resetCount();
     this.doubleScore();
     if (this.state.onFirst) {
       this.setState({
@@ -216,6 +248,7 @@ class BaseballEvents extends Component {
   }
 
   handleTriple = () => {
+    this.resetCount();
     this.tripleScore();
     this.setState({
       onFirst: false,
@@ -240,12 +273,19 @@ class BaseballEvents extends Component {
     }
   }
 
+  resetCount = () => {
+    this.setState({
+      strikes: 0,
+      balls: 0
+    })
+  }
+
   render() {
     return (
       <div className="misc-container">
           <div className='buttons-container'>
             <div className='hits-container'>
-              <button>Single</button>
+              <button onClick={this.handleSingle}>Single</button>
               <button onClick={this.handleDouble}>Double</button>
               <button onClick={this.handleTriple}>Triple</button>
               <button onClick={this.handleHomerun}>Homerun</button>
@@ -253,7 +293,7 @@ class BaseballEvents extends Component {
             <div className='pitch-container'>
               <button onClick={this.handleStrike}>Strike</button>
               <button onClick={this.handleBall}>Ball</button>
-              <button>Foul</button>
+              <button onClick={this.handleFoul}>Foul</button>
             </div>
             <div className='out-event-container'>
               <button onClick={this.handleOut}>Out</button>
